@@ -33,6 +33,8 @@ public class Game {
     public void endGame() {
 
     }
+
+    int x;
 }
 
 
