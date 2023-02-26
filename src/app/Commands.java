@@ -1,19 +1,20 @@
-package java.app;
+package app;
 
 public enum Commands {
-    START("/start", "РќР°С‡Р°С‚СЊ РёРіСЂСѓ", 2, 3),
-    END("/end", "Р—Р°РІРµСЂС€РёС‚СЊ РёРіСЂСѓ", 0, 1),
-    CONNECTION_HOST("/host", "РЎС‚Р°С‚СЊ С…РѕСЃС‚РѕРј", 1, 2),
-    CONNECTION_CLIENT("/client", "РЎС‚Р°С‚СЊ РєР»РёРµРЅС‚РѕРј", 1, 2),
-    SHOOT("/shoot x y", "Р’С‹СЃС‚СЂРµР»РёС‚СЊ РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј x y", 3, 3),
-    UNKNOWN("", "РљРѕРјР°РЅРґР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚", -1, 1);
+    START("/start", "Начать игру", 3, 4),
+    END("/end", "Завершить игру", 0, 1),
+    CONNECTION_HOST("/host", "Стать хостом", 1, 3),
+    CONNECTION_CLIENT("/client", "Стать клиентом", 1, 2),
+    CONNECT("/connect x.x.x.x", "Подключиться к хосту по ip x.x.x.x", 2, 4),
+    SHOOT("/shoot x y", "Выстрелить по координатам x y", 4, 4),
+    UNKNOWN("", "Команда не существует", -1, 1);
 
     private String command;
     private String description;
     private int used_step;
     private int next_step;
 
-    private Commands(String command, String description, int used_step, int next_step)
+    Commands(String command, String description, int used_step, int next_step)
     {
         this.command = command;
         this.description = description;
@@ -32,7 +33,7 @@ public enum Commands {
 
     public static Commands getCommand(String command) {
         for (Commands c : Commands.values()) {
-            if (c.getName() == command) {
+            if (c.command.equals(command)) {
                 return c;
             }
         }
@@ -40,12 +41,8 @@ public enum Commands {
     }
 
     public boolean isAvailable(int step) {
-        if (step == this.used_step || step == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        boolean b = step == this.used_step || step == 0;
+        return b;
     }
 
 }
