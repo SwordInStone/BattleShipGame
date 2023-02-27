@@ -1,4 +1,4 @@
-package java.app;
+package app;
 
 public class Game {
     /*
@@ -26,6 +26,13 @@ public class Game {
 
     }
 
+    public void startGame() {
+
+    }
+
+    public void endGame() {
+
+    }
 }
 
 
